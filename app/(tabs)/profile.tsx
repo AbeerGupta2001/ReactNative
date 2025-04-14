@@ -2,7 +2,7 @@ import { View, Text } from 'react-native'
 
 const Profile = () => {
     return (
-        <View>
+        <View className='bg-primary flex-1'>
             <Text>Profile</Text>
         </View>
     )

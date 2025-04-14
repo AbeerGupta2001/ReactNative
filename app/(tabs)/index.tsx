@@ -14,6 +14,7 @@ import useFetch from '@/services/useFetch'
 import { fetchMovies } from '@/services/api'
 import MovieCard from '@/components/MovieCard'
 import { getTrendingMovies } from '@/services/appwrite'
+import TrendingMovieCard from '@/components/TrendingMovieCard'
 
 export default function Index() {
     const router = useRouter()
@@ -67,21 +68,24 @@ export default function Index() {
                             </View>
                         )}
                         <>
-                            <Text className="text-lg text-neutral-50 font-bold mt-5 mb-3">
-                                Latest Movies
-                            </Text>
-
                             <FlatList
+                                horizontal
+                                showsHorizontalScrollIndicator={false}
+                                ItemSeparatorComponent={() => (
+                                    <View className="w-4" />
+                                )}
                                 data={trendingMovies}
-                                renderItem={({ item }) => (
-                                    <Text className="text-neutral-50">
-                                        {item.title}
-                                    </Text>
+                                renderItem={({ item,index }) => (
+                                    <TrendingMovieCard movie={item} index={index} />
                                 )}
                                 keyExtractor={(item) =>
                                     item.movie_id.toString()
                                 }
                             />
+
+                            <Text className="text-lg text-neutral-50 font-bold mt-5 mb-3">
+                                Latest Movies
+                            </Text>
 
                             <FlatList
                                 data={movies}
